@@ -20,6 +20,7 @@ class CherokeeDateTimeProcessor {
         months << new DateTimeElement(syllabary: 'ᏅᏓᏕᏆ', english:'November');
         months << new DateTimeElement(syllabary: 'ᎥᏍᎩᏱ', english:'December');
 
+        daysOfWeek << new DateTimeElement();
         daysOfWeek << new DateTimeElement(syllabary: 'ᏙᏓᏆᏍᎬᎢ', english: 'Sunday');
         daysOfWeek << new DateTimeElement(syllabary: 'ᏙᏓᏉᏅᎢ', english: 'Monday');
         daysOfWeek << new DateTimeElement(syllabary: 'ᏔᎵᏁ ᎢᎦ', english: 'Tuesday');
@@ -64,9 +65,13 @@ class CherokeeDateTimeProcessor {
         cardinalNumbers << "ᏐᏁᎳ"
     }
 
-    static CherokeeDateTime getDateTime(timeZone="America/Chicago") {
+    static CherokeeDateTime getDateTime(timeZone="/America/Chicago") {
         def cal = Calendar.getInstance()
-        cal.setTimeZone(TimeZone.getTimeZone("America/Chicago"))
+        return getDateTime(cal)
+    }
+
+    static CherokeeDateTime getDateTime(Calendar cal, timeZone="America/Chicago") {
+        cal.setTimeZone(TimeZone.getTimeZone(timeZone))
         def date = cal.get(Calendar.DATE)
         def month = cal.get(Calendar.MONTH)
         def year = cal.get(Calendar.YEAR)
